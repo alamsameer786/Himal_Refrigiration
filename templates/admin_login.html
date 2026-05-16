@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Admin Login | Himal Refrigeration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-900 to-cyan-800 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 max-w-md w-full mx-auto">
+        <div class="text-center mb-6 sm:mb-8">
+            {% load static %}
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="h-16 sm:h-20 mx-auto mb-3 sm:mb-4" onerror="this.src='https://via.placeholder.com/80?text=HR'">
+            <h1 class="text-xl sm:text-2xl font-bold text-gray-800">Admin Login</h1>
+            <p class="text-gray-500 text-xs sm:text-sm mt-1">Himal Refrigeration Dashboard</p>
+        </div>
+        
+        <form id="loginForm" class="space-y-4 sm:space-y-6">
+            {% csrf_token %}
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">Username</label>
+                <input type="text" id="username" name="username" required 
+                       class="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base">
+            </div>
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">Password</label>
+                <input type="password" id="password" name="password" required 
+                       class="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 sm:py-3 rounded-lg font-bold hover:bg-blue-700 transition text-sm sm:text-base">
+                Login
+            </button>
+        </form>
+        
+        <div class="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-gray-500">
+            <p>Secure Admin Access Only</p>
+        </div>
+    </div>
+    
+    <script>
+        // Get CSRF token from cookie
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('username', document.getElementById('username').value);
+            formData.append('password', document.getElementById('password').value);
+            formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));
+            
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Logging in...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/admin-login/submit/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'X-CSRFToken': getCookie('csrftoken') }
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    window.location.href = result.redirect;
+                } else {
+                    alert('Invalid username or password');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Login failed. Please try again.');
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Himal Refrigeration | Professional Appliance Repair</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Manrope', sans-serif; }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        @media (max-width: 768px) {
+            .whatsapp-float { width: 50px; height: 50px; bottom: 15px; right: 15px; }
+        }
+        .hero-bg { background: linear-gradient(135deg, #004a64 0%, #0088b0 100%); }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- Responsive Navbar -->
+<header class="fixed top-0 w-full z-50 bg-white shadow-md">
+    <nav class="flex justify-between items-center px-4 sm:px-6 md:px-16 py-3 md:py-4 max-w-7xl mx-auto">
+        <div class="flex items-center gap-2 sm:gap-3">
+            {% load static %}
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="h-8 sm:h-10 md:h-12 w-auto" onerror="this.src='https://via.placeholder.com/40?text=HR'">
+            <span class="font-bold text-sm sm:text-xl md:text-2xl text-[#004a64]">HIMAL REFRIGERATION</span>
+        </div>
+        <div class="hidden md:flex items-center gap-6 lg:gap-8">
+            <a href="#home" class="text-gray-600 hover:text-[#004a64] font-semibold">Home</a>
+            <a href="#services" class="text-gray-600 hover:text-[#004a64] font-semibold">Services</a>
+            <a href="#about" class="text-gray-600 hover:text-[#004a64] font-semibold">About</a>
+            <a href="#contact" class="text-gray-600 hover:text-[#004a64] font-semibold">Contact</a>
+            <a href="/booking/" class="bg-[#ffb86f] text-black px-5 py-2 rounded-lg font-bold hover:shadow-lg transition text-sm">Book Now</a>
+        </div>
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-[#004a64]">
+            <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t shadow-lg">
+        <div class="flex flex-col p-4 space-y-3">
+            <a href="#home" class="text-gray-600 hover:text-[#004a64] font-semibold py-2">Home</a>
+            <a href="#services" class="text-gray-600 hover:text-[#004a64] font-semibold py-2">Services</a>
+            <a href="#about" class="text-gray-600 hover:text-[#004a64] font-semibold py-2">About</a>
+            <a href="#contact" class="text-gray-600 hover:text-[#004a64] font-semibold py-2">Contact</a>
+            <a href="/booking/" class="bg-[#ffb86f] text-black px-5 py-2 rounded-lg font-bold text-center">Book Now</a>
+        </div>
+    </div>
+</header>
+
+<main class="mt-16 md:mt-20">
+    <!-- Hero Section - Responsive -->
+    <section id="home" class="hero-bg text-white py-16 sm:py-20 md:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div class="text-center md:text-left">
+                <span class="bg-white/20 px-3 py-1 rounded-full text-xs sm:text-sm inline-block mb-4">SERVING PARSA & BARA SINCE 2010</span>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Highly Experienced Staff</h1>
+                <p class="text-base sm:text-lg md:text-xl mb-6 md:mb-8">Trusted appliance repair across Parsa & Bara. Fast, reliable, and affordable solutions.</p>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+                    <a href="/booking/" class="bg-white text-[#004a64] px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-bold hover:shadow-lg transition text-center">Schedule Repair</a>
+                    <a href="https://wa.me/9779811891450" class="bg-[#25D366] text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-bold flex items-center justify-center gap-2">WhatsApp Now</a>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500" alt="Technician" class="rounded-2xl shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - Responsive Grid -->
+    <section id="services" class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-8 md:mb-12">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#004a64] mb-2">Our Services</h2>
+            <div class="w-16 sm:w-20 h-1 bg-[#ffb86f] mx-auto"></div>
+            <p class="text-gray-600 mt-3 text-sm sm:text-base">Professional repair services at affordable prices</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <!-- Service Card -->
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow hover:shadow-xl transition group">
+                <span class="material-symbols-outlined text-[#004a64] text-4xl sm:text-5xl">ac_unit</span>
+                <h3 class="text-lg sm:text-xl font-bold mt-2 sm:mt-3">AC Repair</h3>
+                <p class="text-gray-600 text-sm sm:text-base mt-1 sm:mt-2">Full diagnostics, gas filling, compressor replacement.</p>
+                <p class="text-[#004a64] font-bold mt-2 sm:mt-3 text-sm sm:text-base">From NPR 2,500</p>
+                <a href="/booking/" class="inline-block mt-3 sm:mt-4 text-[#004a64] font-bold text-sm sm:text-base group-hover:underline">Book Now →</a>
+            </div>
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow hover:shadow-xl transition group">
+                <span class="material-symbols-outlined text-[#004a64] text-4xl sm:text-5xl">local_laundry_service</span>
+                <h3 class="text-lg sm:text-xl font-bold mt-2 sm:mt-3">Washing Machine</h3>
+                <p class="text-gray-600 text-sm sm:text-base mt-1 sm:mt-2">Drum, motor, and control board repair.</p>
+                <p class="text-[#004a64] font-bold mt-2 sm:mt-3 text-sm sm:text-base">From NPR 2,000</p>
+                <a href="/booking/" class="inline-block mt-3 sm:mt-4 text-[#004a64] font-bold text-sm sm:text-base group-hover:underline">Book Now →</a>
+            </div>
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow hover:shadow-xl transition group">
+                <span class="material-symbols-outlined text-[#004a64] text-4xl sm:text-5xl">kitchen</span>
+                <h3 class="text-lg sm:text-xl font-bold mt-2 sm:mt-3">Chiller Repair</h3>
+                <p class="text-gray-600 text-sm sm:text-base mt-1 sm:mt-2">Commercial refrigeration specialists.</p>
+                <p class="text-[#004a64] font-bold mt-2 sm:mt-3 text-sm sm:text-base">From NPR 3,500</p>
+                <a href="/booking/" class="inline-block mt-3 sm:mt-4 text-[#004a64] font-bold text-sm sm:text-base group-hover:underline">Book Now →</a>
+            </div>
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow hover:shadow-xl transition group">
+                <span class="material-symbols-outlined text-[#004a64] text-4xl sm:text-5xl">cleaning_services</span>
+                <h3 class="text-lg sm:text-xl font-bold mt-2 sm:mt-3">AC Servicing</h3>
+                <p class="text-gray-600 text-sm sm:text-base mt-1 sm:mt-2">Seasonal deep cleaning & performance optimization.</p>
+                <p class="text-[#004a64] font-bold mt-2 sm:mt-3 text-sm sm:text-base">From NPR 1,200</p>
+                <a href="/booking/" class="inline-block mt-3 sm:mt-4 text-[#004a64] font-bold text-sm sm:text-base group-hover:underline">Book Now →</a>
+            </div>
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow hover:shadow-xl transition group">
+                <span class="material-symbols-outlined text-[#004a64] text-4xl sm:text-5xl">gas_meter</span>
+                <h3 class="text-lg sm:text-xl font-bold mt-2 sm:mt-3">Gas Filling</h3>
+                <p class="text-gray-600 text-sm sm:text-base mt-1 sm:mt-2">Precision refilling with eco-friendly refrigerants.</p>
+                <p class="text-[#004a64] font-bold mt-2 sm:mt-3 text-sm sm:text-base">From NPR 1,500</p>
+                <a href="/booking/" class="inline-block mt-3 sm:mt-4 text-[#004a64] font-bold text-sm sm:text-base group-hover:underline">Book Now →</a>
+            </div>
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow hover:shadow-xl transition group">
+                <span class="material-symbols-outlined text-[#004a64] text-4xl sm:text-5xl">handyman</span>
+                <h3 class="text-lg sm:text-xl font-bold mt-2 sm:mt-3">Fitting</h3>
+                <p class="text-gray-600 text-sm sm:text-base mt-1 sm:mt-2">Professional installation & mounting.</p>
+                <p class="text-[#004a64] font-bold mt-2 sm:mt-3 text-sm sm:text-base">From NPR 1,000</p>
+                <a href="/booking/" class="inline-block mt-3 sm:mt-4 text-[#004a64] font-bold text-sm sm:text-base group-hover:underline">Book Now →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Responsive -->
+    <section id="about" class="bg-[#263142] text-white py-12 sm:py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">About Himal Refrigeration</h2>
+                <p class="text-gray-300 text-sm sm:text-base mb-6">We bring high-altitude clarity to appliance restoration. Our certified technicians use calibrated tools to ensure your machinery runs at peak performance.</p>
+                <div class="grid grid-cols-3 gap-2 sm:gap-4 mt-6 sm:mt-8">
+                    <div><span class="text-xl sm:text-2xl md:text-3xl font-bold text-[#ffb86f]">30+</span><p class="text-xs sm:text-sm">Technicians</p></div>
+                    <div><span class="text-xl sm:text-2xl md:text-3xl font-bold text-[#ffb86f]">5,000+</span><p class="text-xs sm:text-sm">Customers</p></div>
+                    <div><span class="text-xl sm:text-2xl md:text-3xl font-bold text-[#ffb86f]">30-Day</span><p class="text-xs sm:text-sm">Warranty</p></div>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500" alt="Team" class="rounded-2xl shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Responsive -->
+    <section id="contact" class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div class="bg-[#c2e8ff] rounded-2xl p-6 sm:p-8 md:p-12 text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold text-[#004a64] mb-2">Ready to Restore?</h2>
+            <p class="text-sm sm:text-base mb-4 sm:mb-6">Contact our dispatch for immediate support in Parsa or Bara.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                <a href="tel:+9779811891450" class="bg-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold text-sm sm:text-base">📞 Call: 9811891450</a>
+                <a href="mailto:himalrefrigiration@gmail.com" class="bg-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold text-sm sm:text-base">✉️ himalrefrigiration@gmail.com</a>
+                <a href="https://wa.me/9779811891450" class="bg-[#25D366] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold text-sm sm:text-base">💬 WhatsApp</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-[#263142] text-white py-6 sm:py-10 px-4 sm:px-6 text-center text-xs sm:text-sm">
+    <p>© 2026 Himal Refrigeration. All rights reserved. | Call: 9811891450</p>
+</footer>
+
+<a href="https://wa.me/9779811891450" class="whatsapp-float">
+    <span class="material-symbols-outlined text-2xl sm:text-3xl text-white">chat</span>
+</a>
+
+<script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    });
+</script>
+</body>
+</html>

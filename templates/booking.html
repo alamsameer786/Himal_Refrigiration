@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Book Service | Himal Refrigeration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Manrope', sans-serif; }
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #10b981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 1000;
+            display: none;
+            white-space: nowrap;
+        }
+        @media (max-width: 640px) {
+            .toast { white-space: normal; text-align: center; width: 90%; font-size: 14px; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- Responsive Navbar -->
+<nav class="bg-white shadow-md py-3 sm:py-4 px-4 sm:px-6 flex flex-wrap justify-between items-center max-w-7xl mx-auto">
+    <div class="flex items-center gap-2 sm:gap-3">
+        {% load static %}
+        <img src="{% static 'images/logo.png' %}" alt="Logo" class="h-8 sm:h-10 w-auto" onerror="this.src='https://via.placeholder.com/40?text=HR'">
+        <span class="font-bold text-base sm:text-xl text-[#004a64]">Himal Refrigeration</span>
+    </div>
+    <a href="/" class="text-gray-600 hover:text-[#004a64] text-sm sm:text-base">← Back to Home</a>
+</nav>
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- Booking Form -->
+        <div class="lg:col-span-2 bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8">
+            <h1 class="text-2xl sm:text-3xl font-bold text-[#004a64] text-center mb-2">Book Your Repair Service</h1>
+            <p class="text-center text-gray-500 text-sm sm:text-base mb-6 sm:mb-8">Cash on Delivery Only — Pay when our technician arrives</p>
+            
+            <form id="bookingForm" class="space-y-4 sm:space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm sm:text-base">Full Name *</label>
+                        <input type="text" id="fullName" required class="w-full p-2 sm:p-3 border rounded-lg focus:ring-2 focus:ring-[#004a64] focus:border-[#004a64] text-sm sm:text-base">
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm sm:text-base">Phone Number *</label>
+                        <input type="tel" id="phone" required placeholder="9811891450" class="w-full p-2 sm:p-3 border rounded-lg text-sm sm:text-base">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block font-semibold mb-2 text-sm sm:text-base">Email (Optional)</label>
+                    <input type="email" id="email" placeholder="your@email.com" class="w-full p-2 sm:p-3 border rounded-lg text-sm sm:text-base">
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm sm:text-base">City/District *</label>
+                        <select id="city" required class="w-full p-2 sm:p-3 border rounded-lg text-sm sm:text-base">
+                            <option value="">Select City</option>
+                            <option>Parsa</option>
+                            <option>Bara</option>
+                            <option>Kathmandu</option>
+                            <option>Lalitpur</option>
+                            <option>Bhaktapur</option>
+                            <option>Pokhara</option>
+                            <option>Biratnagar</option>
+                            <option>Birgunj</option>
+                            <option>Janakpur</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm sm:text-base">Preferred Date *</label>
+                        <input type="date" id="preferredDate" required class="w-full p-2 sm:p-3 border rounded-lg text-sm sm:text-base">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block font-semibold mb-2 text-sm sm:text-base">Full Address *</label>
+                    <textarea id="address" required rows="2" placeholder="Street, Ward No., Landmark" class="w-full p-2 sm:p-3 border rounded-lg text-sm sm:text-base"></textarea>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm sm:text-base">Service Type *</label>
+                        <select id="service" required class="w-full p-2 sm:p-3 border rounded-lg text-sm sm:text-base">
+                            <option value="">Select Service</option>
+                            <option value="AC Repair">AC Repair - NPR 2,500</option>
+                            <option value="AC Servicing">AC Servicing - NPR 1,800</option>
+                            <option value="AC Installation">AC Installation - NPR 3,500</option>
+                            <option value="AC Uninstallation">AC Uninstallation - NPR 2,000</option>
+                            <option value="AC Gas Filling">AC Gas Filling - NPR 4,500</option>
+                            <option value="Split AC Service">Split AC Service - NPR 2,200</option>
+                            <option value="Window AC Service">Window AC Service - NPR 1,800</option>
+                            <option value="Refrigerator Repair">Refrigerator Repair - NPR 2,800</option>
+                            <option value="Deep Freezer Repair">Deep Freezer Repair - NPR 4,000</option>
+                            <option value="Commercial Freezer Repair">Commercial Freezer Repair - NPR 5,500</option>
+                            <option value="Chiller Repair">Chiller Repair - NPR 6,500</option>
+                            <option value="Cold Room Repair">Cold Room Repair - NPR 12,000</option>
+                            <option value="Cold Storage Repair">Cold Storage Repair - NPR 18,000</option>
+                            <option value="Washing Machine Repair">Washing Machine Repair - NPR 2,500</option>
+                            <option value="Washing Machine Installation">Washing Machine Installation - NPR 1,500</option>
+                            <option value="Water Cooler Repair">Water Cooler Repair - NPR 2,200</option>
+                            <option value="Water Dispenser Repair">Water Dispenser Repair - NPR 1,800</option>
+                            <option value="Geyser Repair">Geyser Repair - NPR 2,500</option>
+                            <option value="Geyser Installation">Geyser Installation - NPR 3,000</option>
+                            <option value="Microwave Oven Repair">Microwave Oven Repair - NPR 2,200</option>
+                            <option value="Electric Oven Repair">Electric Oven Repair - NPR 3,500</option>
+                            <option value="Induction Repair">Induction Repair - NPR 1,500</option>
+                            <option value="Vehicle AC Repair">Vehicle AC Repair - NPR 4,500</option>
+                            <option value="Vehicle AC Gas Filling">Vehicle AC Gas Filling - NPR 3,500</option>
+                            <option value="Fan Repair">Fan Repair - NPR 1,000</option>
+                            <option value="Inverter Repair">Inverter Repair - NPR 5,000</option>
+                            <option value="Stabilizer Repair">Stabilizer Repair - NPR 1,800</option>
+                            <option value="LED TV Repair">LED TV Repair - NPR 4,500</option>
+                        </select>
+                    </div>
+                    <div>
+    <label class="block font-semibold mb-2 text-sm sm:text-base">Preferred Time (Optional)</label>
+    <select id="preferredTime" class="w-full p-2 sm:p-3 border rounded-lg text-sm sm:text-base">
+        <option value="">Any Time</option>
+        <option value="09:00">09:00 AM - 11:00 AM</option>
+        <option value="11:00">11:00 AM - 01:00 PM</option>
+        <option value="13:00">01:00 PM - 03:00 PM</option>
+        <option value="15:00">03:00 PM - 05:00 PM</option>
+    </select>
+</div>
+                </div>
+                
+                <div>
+                    <label class="block font-semibold mb-2 text-sm sm:text-base">Problem Description (Optional)</label>
+                    <textarea id="problemDescription" rows="2" placeholder="Briefly describe the issue..." class="w-full p-2 sm:p-3 border rounded-lg text-sm sm:text-base"></textarea>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                        <label class="block font-semibold mb-2 text-sm sm:text-base">Payment Method *</label>
+                        <select id="paymentMethod" required class="w-full p-2 sm:p-3 border rounded-lg text-sm sm:text-base">
+                            <option value="Cash">Cash on Delivery</option>
+                            {% comment %} <option value="eSewa">eSewa</option>
+                            <option value="Fonepay">Fonepay</option>
+                            <option value="Card">Debit/Credit Card</option> {% endcomment %}
+                        </select>
+                    </div>
+                    <div class="flex items-center pt-6 sm:pt-8">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="isEmergency" class="w-4 h-4 text-red-600">
+                            <span class="text-sm sm:text-base text-red-600 font-semibold">🚨 Emergency Service</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full bg-[#004a64] text-white py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-[#003a4e] transition mt-4">
+                    Confirm Booking (COD)
+                </button>
+                <p class="text-center text-xs sm:text-sm text-gray-500">By confirming, you agree to our service terms. Pay when service is completed.</p>
+            </form>
+        </div>
+        
+        <!-- Price Sidebar - Responsive -->
+        <div class="space-y-4 sm:space-y-6">
+            <div class="bg-gradient-to-br from-[#004a64] to-[#0088b0] text-white p-4 sm:p-6 rounded-xl shadow-lg">
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined">receipt_long</span>
+                    Service Price
+                </h3>
+                <div id="priceDisplay" class="text-center py-4 sm:py-6">
+                    <div class="text-3xl sm:text-4xl md:text-5xl font-bold" id="priceAmount">NPR 0</div>
+                    <p class="text-xs sm:text-sm opacity-90 mt-2">Select a service to see price</p>
+                </div>
+            </div>
+            
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg border">
+                <h3 class="font-bold text-base sm:text-lg mb-3 sm:mb-4">Why Choose Us?</h3>
+                <ul class="space-y-2 sm:space-y-3 text-sm sm:text-base">
+                    <li class="flex gap-2 items-start"><span class="text-green-600">✓</span> 30+ Certified Technicians</li>
+                    <li class="flex gap-2 items-start"><span class="text-green-600">✓</span> Free Diagnostic</li>
+                    <li class="flex gap-2 items-start"><span class="text-green-600">✓</span> 30-Day Service Warranty</li>
+                    <li class="flex gap-2 items-start"><span class="text-green-600">✓</span> Same-Day Service Available</li>
+                    <li class="flex gap-2 items-start"><span class="text-green-600">✓</span> Genuine Spare Parts</li>
+                    <li class="flex gap-2 items-start"><span class="text-green-600">✓</span> Best Price Guarantee</li>
+                </ul>
+            </div>
+            
+            <div class="bg-gray-100 p-4 sm:p-6 rounded-xl">
+                <h3 class="font-bold text-base sm:text-lg mb-2">Need Help?</h3>
+                <p class="text-gray-600 text-sm sm:text-base mb-3">Call us for immediate support</p>
+                <a href="tel:+9779811891450" class="block text-[#004a64] font-bold text-sm sm:text-base">📞 +977 9811891450</a>
+                <a href="https://wa.me/9779811891450" class="block text-green-600 font-bold mt-2 text-sm sm:text-base">💬 WhatsApp</a>
+                <a href="mailto:himalrefrigiration@gmail.com" class="block text-gray-600 mt-2 text-sm sm:text-base">✉️ himalrefrigiration@gmail.com</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="toast" class="toast">✓ Booking Confirmed! We'll call you shortly.</div>
+
+<script>
+    const API_URL = window.location.origin;
+    
+    // Service prices mapping
+    const servicePrices = {
+        'AC Repair': 2500, 'AC Servicing': 1800, 'AC Installation': 3500, 'AC Uninstallation': 2000,
+        'AC Gas Filling': 4500, 'Split AC Service': 2200, 'Window AC Service': 1800,
+        'Refrigerator Repair': 2800, 'Deep Freezer Repair': 4000, 'Commercial Freezer Repair': 5500,
+        'Chiller Repair': 6500, 'Cold Room Repair': 12000, 'Cold Storage Repair': 18000,
+        'Washing Machine Repair': 2500, 'Washing Machine Installation': 1500,
+        'Water Cooler Repair': 2200, 'Water Dispenser Repair': 1800,
+        'Geyser Repair': 2500, 'Geyser Installation': 3000,
+        'Microwave Oven Repair': 2200, 'Electric Oven Repair': 3500, 'Induction Repair': 1500,
+        'Vehicle AC Repair': 4500, 'Vehicle AC Gas Filling': 3500,
+        'Fan Repair': 1000, 'Inverter Repair': 5000, 'Stabilizer Repair': 1800, 'LED TV Repair': 4500
+    };
+    
+    // Update price when service is selected
+    document.getElementById('service').addEventListener('change', function() {
+        const service = this.value;
+        const price = servicePrices[service] || 0;
+        const priceDisplay = document.getElementById('priceAmount');
+        if (price > 0) {
+            priceDisplay.innerHTML = `NPR ${price.toLocaleString()}`;
+            priceDisplay.parentElement.querySelector('p').innerHTML = `Estimated price for ${service}`;
+        } else {
+            priceDisplay.innerHTML = 'NPR 0';
+            priceDisplay.parentElement.querySelector('p').innerHTML = 'Select a service to see price';
+        }
+    });
+    
+    // Form submission
+    document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const selectedService = document.getElementById('service').value;
+        if (!selectedService) {
+            alert('Please select a service');
+            return;
+        }
+        
+        const bookingData = {
+            full_name: document.getElementById('fullName').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value,
+            city: document.getElementById('city').value,
+            address: document.getElementById('address').value,
+            service_type: selectedService,
+            preferred_date: document.getElementById('preferredDate').value,
+            preferred_time: document.getElementById('preferredTime').value,
+            problem_description: document.getElementById('problemDescription').value,
+            payment_method: document.getElementById('paymentMethod').value,
+            is_emergency: document.getElementById('isEmergency').checked
+        };
+        
+        // Validate required fields
+        if (!bookingData.full_name || !bookingData.phone || !bookingData.city || !bookingData.address || !bookingData.preferred_date) {
+            alert('Please fill all required fields');
+            return;
+        }
+        
+        // Validate phone
+        if (!/^\d{10}$/.test(bookingData.phone)) {
+            alert('Please enter a valid 10-digit phone number');
+            return;
+        }
+        
+        const submitBtn = document.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = 'Processing...';
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await fetch(`${API_URL}/api/bookings/create/`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(bookingData)
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                const price = servicePrices[selectedService];
+                alert(`✓ Booking Confirmed!\n\nBooking ID: ${result.booking_id}\nService: ${selectedService}\nPrice: NPR ${price.toLocaleString()}\nStatus: ${result.status}\n\nWe will contact you within 30 minutes.`);
+                document.getElementById('bookingForm').reset();
+                document.getElementById('priceAmount').innerHTML = 'NPR 0';
+            } else {
+                alert('Error: ' + result.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Network error. Please check your connection and try again.');
+        } finally {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+    
+    // Set min date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('preferredDate').min = today;
+</script>
+</body>
+</html>

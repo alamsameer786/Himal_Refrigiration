@@ -61,10 +61,7 @@ Himal Refrigeration is a comprehensive **service booking management system** for
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live Website
 
 - **Website:** [https://himal-refrigeration.onrender.com](https://himal-refrigeration.onrender.com)
-- **Admin Login:** [https://himal-refrigeration.onrender.com/admin-login/](https://himal-refrigeration.onrender.com/admin-login/)
 - **Booking Page:** [https://himal-refrigeration.onrender.com/booking/](https://himal-refrigeration.onrender.com/booking/)
-
-### Admin Credentials (Demo)
